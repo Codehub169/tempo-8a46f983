@@ -1,0 +1,21 @@
+# SQLite database
+budget.db
+budget.db-journal
+
+# Python cache files and artifacts
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment directories (common names)
+/venv/
+/.venv/
+/env/
+/.env/
+
+# IDE / Editor specific files (examples, can be extended)
+/.vscode/
+/.idea/
+*.swp
+*.swo
