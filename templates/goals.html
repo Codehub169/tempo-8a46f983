@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+
+{% block title %}Savings Goals - Personal Budget Tracker{% endblock %}
+
+{% block content %}
+<div class="container goals-page">
+    <header class="page-header">
+        <h1><span class="material-icons-outlined">savings</span> Savings Goals</h1>
+        <p>Set and track your financial goals to achieve your dreams.</p>
+    </header>
+
+    <!-- Add Goal Form -->
+    <section class="card add-goal-section">
+        <h2><span class="material-icons-outlined">add_circle_outline</span> Add New Goal</h2>
+        <form id="add-goal-form" class="form-grid">
+            <div class="form-group">
+                <label for="goal-name">Goal Name</label>
+                <input type="text" id="goal-name" name="name" required placeholder="e.g., New Laptop, Vacation Fund">
+            </div>
+            <div class="form-group">
+                <label for="goal-target-amount">Target Amount</label>
+                <input type="number" id="goal-target-amount" name="target_amount" step="0.01" min="0.01" required placeholder="e.g., 1500.00">
+            </div>
+            <div class="form-group">
+                <label for="goal-current-amount">Current Amount (Optional)</label>
+                <input type="number" id="goal-current-amount" name="current_amount" step="0.01" min="0" placeholder="e.g., 150.00">
+            </div>
+            <div class="form-group">
+                <label for="goal-deadline">Deadline (Optional)</label>
+                <input type="date" id="goal-deadline" name="deadline">
+            </div>
+            <div class="form-group form-actions">
+                <button type="submit" class="btn btn-primary"><span class="material-icons-outlined">save</span> Add Goal</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Goals List -->
+    <section class="card goals-list-section">
+        <h2><span class="material-icons-outlined">checklist</span> Your Goals</h2>
+        <ul id="goals-list" class="styled-list"></ul>
+    </section>
+
+    <!-- Edit Goal Modal -->
+    <div id="edit-goal-modal" class="modal" style="display: none;">
+        <div class="modal-content card">
+            <span class="close-button material-icons-outlined" onclick="document.getElementById('edit-goal-modal').style.display='none'">close</span>
+            <h2><span class="material-icons-outlined">edit_note</span> Edit Goal</h2>
+            <form id="edit-goal-form" class="form-grid">
+                <input type="hidden" id="edit-goal-id" name="id">
+                <div class="form-group">
+                    <label for="edit-goal-name">Goal Name</label>
+                    <input type="text" id="edit-goal-name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-goal-target-amount">Target Amount</label>
+                    <input type="number" id="edit-goal-target-amount" name="target_amount" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-goal-current-amount">Current Amount</label>
+                    <input type="number" id="edit-goal-current-amount" name="current_amount" step="0.01" min="0" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-goal-deadline">Deadline (Optional)</label>
+                    <input type="date" id="edit-goal-deadline" name="deadline">
+                </div>
+                <div class="form-group form-actions">
+                    <button type="submit" class="btn btn-primary"><span class="material-icons-outlined">save</span> Save Changes</button>
+                    <button type="button" id="cancel-edit-goal" class="btn btn-secondary"><span class="material-icons-outlined">cancel</span> Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/goals_page.js') }}"></script>
+{% endblock %}

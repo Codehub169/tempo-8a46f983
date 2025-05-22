@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}Transactions - Personal Budget Tracker{% endblock %}
+
+{% block content %}
+<div class="container transactions-page">
+    <header class="page-header">
+        <h1><span class="material-icons-outlined">receipt_long</span> Transactions</h1>
+        <p>Manage your income and expenses. Add, view, edit, or delete transactions.</p>
+    </header>
+
+    <!-- Add Transaction Form -->
+    <section class="card add-transaction-section">
+        <h2><span class="material-icons-outlined">playlist_add</span> Add New Transaction</h2>
+        <form id="add-transaction-form" class="form-grid">
+            <div class="form-group">
+                <label for="transaction-type">Type</label>
+                <select id="transaction-type" name="type" required>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="transaction-category">Category</label>
+                <input type="text" id="transaction-category" name="category" required placeholder="e.g., Salary, Groceries, Utilities">
+            </div>
+            <div class="form-group">
+                <label for="transaction-amount">Amount</label>
+                <input type="number" id="transaction-amount" name="amount" step="0.01" min="0.01" required placeholder="e.g., 50.00">
+            </div>
+            <div class="form-group">
+                <label for="transaction-date">Date</label>
+                <input type="date" id="transaction-date" name="date" required>
+            </div>
+            <div class="form-group full-width">
+                <label for="transaction-description">Description (Optional)</label>
+                <input type="text" id="transaction-description" name="description" placeholder="e.g., Monthly salary payment">
+            </div>
+            <div class="form-group form-actions full-width">
+                <button type="submit" class="btn btn-primary"><span class="material-icons-outlined">add_circle</span> Add Transaction</button>
+            </div>
+        </form>
+    </section>
+
+    <!-- Transactions Table -->
+    <section class="card transactions-table-section">
+        <h2><span class="material-icons-outlined">list_alt</span> Transaction History</h2>
+        <div class="table-responsive">
+            <table class="transactions-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Amount</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="transactions-table-body">
+                    <!-- Transaction rows will be inserted here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Edit Transaction Modal -->
+    <div id="edit-transaction-modal" class="modal" style="display: none;">
+        <div class="modal-content card">
+            <span class="close-button material-icons-outlined" onclick="document.getElementById('edit-transaction-modal').style.display='none'">close</span>
+            <h2><span class="material-icons-outlined">edit</span> Edit Transaction</h2>
+            <form id="edit-transaction-form" class="form-grid">
+                <input type="hidden" id="edit-transaction-id" name="id">
+                <div class="form-group">
+                    <label for="edit-transaction-type">Type</label>
+                    <select id="edit-transaction-type" name="type" required>
+                        <option value="income">Income</option>
+                        <option value="expense">Expense</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="edit-transaction-category">Category</label>
+                    <input type="text" id="edit-transaction-category" name="category" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-transaction-amount">Amount</label>
+                    <input type="number" id="edit-transaction-amount" name="amount" step="0.01" min="0.01" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-transaction-date">Date</label>
+                    <input type="date" id="edit-transaction-date" name="date" required>
+                </div>
+                <div class="form-group full-width">
+                    <label for="edit-transaction-description">Description (Optional)</label>
+                    <input type="text" id="edit-transaction-description" name="description">
+                </div>
+                <div class="form-group form-actions full-width">
+                    <button type="submit" class="btn btn-primary"><span class="material-icons-outlined">save</span> Save Changes</button>
+                    <button type="button" id="cancel-edit-transaction" class="btn btn-secondary"><span class="material-icons-outlined">cancel</span> Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/transactions_page.js') }}"></script>
+{% endblock %}

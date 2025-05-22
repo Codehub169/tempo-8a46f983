@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Personal Budget Tracker{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="icon" href="https://img.icons8.com/plasticine/100/000000/budget.png" type="image/png">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1><i class="material-icons" style="font-size: 1.2em; vertical-align: middle;">account_balance_wallet</i> Personal Budget Tracker</h1>
+            <nav>
+                <ul>
+                    <li><a href="{{ url_for('index') }}"><i class="material-icons">dashboard</i> Dashboard</a></li>
+                    <li><a href="{{ url_for('transactions_page') }}"><i class="material-icons">receipt_long</i> Transactions</a></li>
+                    <li><a href="{{ url_for('goals_page') }}"><i class="material-icons">savings</i> Savings Goals</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Personal Budget Tracker. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+    </div>
+    <div id="notification-area"></div>
+
+    <script src="{{ url_for('static', filename='js/common.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

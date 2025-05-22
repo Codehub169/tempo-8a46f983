@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard - Personal Budget Tracker{% endblock %}
+
+{% block content %}
+<section class="dashboard-overview">
+    <h2><i class="material-icons">insights</i> Financial Overview</h2>
+    <div class="stats-grid">
+        <div class="stat-card income">
+            <div class="stat-card-header">
+                <i class="material-icons">trending_up</i>
+                <h3>Total Income</h3>
+            </div>
+            <p id="total-income">$0.00</p>
+        </div>
+        <div class="stat-card expense">
+            <div class="stat-card-header">
+                <i class="material-icons">trending_down</i>
+                <h3>Total Expenses</h3>
+            </div>
+            <p id="total-expenses">$0.00</p>
+        </div>
+        <div class="stat-card balance">
+            <div class="stat-card-header">
+                <i class="material-icons">account_balance</i>
+                <h3>Net Balance</h3>
+            </div>
+            <p id="net-balance">$0.00</p>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard-charts">
+    <div class="chart-container card">
+        <h3><i class="material-icons">pie_chart</i> Spending Breakdown</h3>
+        <canvas id="spending-chart"></canvas>
+    </div>
+    <div class="chart-container card">
+        <h3><i class="material-icons">bar_chart</i> Income vs. Expenses</h3>
+        <canvas id="income-expense-chart"></canvas>
+    </div>
+</section>
+
+<section class="dashboard-details">
+    <div class="recent-transactions card">
+        <h3><i class="material-icons">history</i> Recent Transactions</h3>
+        <ul id="recent-transactions-list">
+            <!-- Transactions will be loaded here by JavaScript -->
+            <li>No recent transactions.</li> 
+        </ul>
+    </div>
+    <div class="savings-goals-summary card">
+        <h3><i class="material-icons">flag</i> Savings Goals Progress</h3>
+        <ul id="savings-goals-summary">
+            <!-- Goals summary will be loaded here by JavaScript -->
+            <li>No active savings goals.</li>
+        </ul>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/dashboard_page.js') }}"></script>
+{% endblock %}
